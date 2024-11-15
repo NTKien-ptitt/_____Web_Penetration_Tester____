@@ -82,14 +82,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqd3QuZXhhbXBsZSIsImV4cCI6MTYxNjI
 ### **2. Terminology**  
 #### **Các thuật ngữ quan trọng trong JWT**:  
 
-1. **JSON Web Token (JWT)**  
+2.1. **JSON Web Token (JWT)**  
    - Là chuỗi ký tự biểu diễn các thông tin xác nhận (*claims*), được ký hoặc mã hóa.  
    - Ví dụ:  
      ```plaintext
      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
      ```
 
-2. **Claim**  
+2.2. **Claim**  
    - Một thông tin được xác nhận về chủ thể, biểu diễn dưới dạng cặp **name/value**.  
    - **Claim Name**: Tên của thông tin.  
    - **Claim Value**: Giá trị của thông tin, có thể là chuỗi, số, hoặc JSON.  
@@ -98,7 +98,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqd3QuZXhhbXBsZSIsImV4cCI6MTYxNjI
      {"iss": "example.com", "exp": 1700000000}
      ```
 
-3. **JWT Claims Set**  
+2.3. **JWT Claims Set**  
    - Là một JSON object chứa tất cả các *claims*.  
    - Ví dụ:  
      ```json
@@ -109,7 +109,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqd3QuZXhhbXBsZSIsImV4cCI6MTYxNjI
      }
      ```
 
-4. **Nested JWT**  
+2.4. **Nested JWT**  
    - JWT có thể được lồng nhau, ví dụ một JWT được ký (JWS) sau đó mã hóa (JWE).  
    - Ví dụ:  
      - **JWT lồng nhau**:  
@@ -117,14 +117,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqd3QuZXhhbXBsZSIsImV4cCI6MTYxNjI
        EncryptedJWT(SignedJWT(Header, Payload, Signature))
        ```
 
-5. **Unsecured JWT**  
+2.5. **Unsecured JWT**  
    - JWT không được bảo vệ bởi chữ ký hoặc mã hóa, thuật toán `"alg": "none"` được sử dụng.  
    - Ví dụ:  
      ```plaintext
      eyJhbGciOiJub25lIn0.eyJzdWIiOiIxMjM0NTY3ODkwIn0.
      ```
 
-6. **NumericDate**  
+2.6. **NumericDate**  
    - Giá trị số JSON, biểu diễn thời gian tính từ **Epoch (1970-01-01T00:00:00Z UTC)**.  
    - Ví dụ:  
      - Thời gian **1700000000** tương ứng ngày 14/07/2023.  
