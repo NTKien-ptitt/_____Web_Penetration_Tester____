@@ -506,3 +506,230 @@ Khi xác thực JWT, thực hiện các bước sau (JWT bị từ chối nếu 
 
 ---
 
+---
+
+### 10. IANA Considerations
+
+#### 10.1. JSON Web Token Claims Registry
+
+- **Mục đích**: Tạo và quản lý danh sách các Claim Names cho JWT trong cơ sở dữ liệu của IANA. Mỗi Claim Name được ghi lại với mô tả và tham chiếu tài liệu kỹ thuật.
+
+- **Quy trình đăng ký**:
+   - Giá trị Claim được đăng ký theo nguyên tắc "Specification Required" sau khi được phê duyệt bởi các chuyên gia có thẩm quyền.
+   - Quá trình đăng ký có một khoảng thời gian xem xét 3 tuần qua danh sách email **jwt-reg-review@ietf.org**.
+   - Quyết định sẽ được phê duyệt hoặc từ chối, và yêu cầu chưa quyết định trong vòng 21 ngày có thể được chuyển đến **IESG** để giải quyết.
+
+- **Ví dụ về các Claim Names ban đầu**:
+   - **Claim Name**: `"iss"` (Issuer)
+     - **Mô tả**: Người phát hành JWT.
+     - **Tài liệu tham khảo**: Section 4.1.1 của RFC 7519
+   - **Claim Name**: `"sub"` (Subject)
+     - **Mô tả**: Chủ thể của JWT.
+     - **Tài liệu tham khảo**: Section 4.1.2 của RFC 7519
+
+- **Ví dụ code sử dụng Claims trong JWT**:
+  ```javascript
+  const jwt = require('jsonwebtoken');
+
+  const token = jwt.sign({
+    iss: 'myIssuer',
+    sub: 'user123',
+    aud: 'myApp'
+  }, 'your-256-bit-secret', { expiresIn: '1h' });
+
+  console.log(token);  // In ra token JWT đã được tạo
+  ```
+
+#### 10.2. Sub-Namespace Registration of urn:ietf:params:oauth:token-type:jwt
+
+- **Mục đích**: Đăng ký giá trị `"token-type:jwt"` trong cơ sở dữ liệu "OAuth URI" của IANA, giúp nhận diện token là JWT trong các hệ thống OAuth.
+
+- **Thông tin đăng ký**:
+   - **URN**: `urn:ietf:params:oauth:token-type:jwt`
+   - **Tên chung**: JSON Web Token (JWT) Token Type
+   - **Thay đổi quản lý**: IESG
+   - **Tài liệu tham khảo**: RFC 7519
+
+- **Ví dụ code trong OAuth sử dụng JWT**:
+  Giả sử bạn đang sử dụng JWT làm phần của quy trình OAuth:
+  ```javascript
+  const oauth2 = require('simple-oauth2').create({
+    client: {
+      id: 'your-client-id',
+      secret: 'your-client-secret'
+    },
+    auth: {
+      tokenHost: 'https://api.example.com'
+    }
+  });
+
+  // Tạo một token JWT và sử dụng trong OAuth request
+  const token = oauth2.accessToken.create({ access_token: 'your-jwt-token' });
+
+  console.log(token.token.access_token);  // In ra JWT token
+  ```
+
+#### 10.3. Media Type Registration
+
+- **Mục đích**: Đăng ký kiểu MIME `"application/jwt"` trong cơ sở dữ liệu "Media Types" của IANA, giúp xác định rằng nội dung là JWT.
+
+- **Thông tin đăng ký**:
+   - **Type name**: `application`
+   - **Subtype name**: `jwt`
+   - **Tài liệu tham khảo**: RFC 7519
+   - **Ứng dụng sử dụng**: OpenID Connect, Mozilla Persona, Google, Salesforce, Amazon Web Services, v.v.
+   - **Quản lý thay đổi**: IESG
+
+- **Ví dụ code trong API trả về JWT**:
+  Giả sử một API sử dụng kiểu MIME `"application/jwt"` khi trả về token JWT:
+  ```javascript
+  const express = require('express');
+  const jwt = require('jsonwebtoken');
+
+  const app = express();
+
+  app.get('/api/token', (req, res) => {
+    const payload = { iss: 'myIssuer', sub: 'user123' };
+    const token = jwt.sign(payload, 'your-256-bit-secret', { expiresIn: '1h' });
+    res.header('Content-Type', 'application/jwt');
+    res.send(token);  // Trả về token JWT với kiểu MIME application/jwt
+  });
+
+  app.listen(3000, () => console.log('Server running on port 3000'));
+  ```
+
+#### 10.4. Header Parameter Names Registration
+
+- **Mục đích**: Đăng ký các Header Parameters của JWT trong cơ sở dữ liệu "JSON Web Signature and Encryption Header Parameters" của IANA.
+
+- **Thông tin đăng ký**:
+   - **Header Parameter Name**: `"iss"` (Issuer)
+     - **Mô tả**: Người phát hành JWT.
+     - **Sử dụng trong**: JWE (JSON Web Encryption).
+     - **Tài liệu tham khảo**: Section 4.1.1 của RFC 7519
+   - **Header Parameter Name**: `"sub"` (Subject)
+     - **Mô tả**: Chủ thể của JWT.
+     - **Sử dụng trong**: JWE.
+     - **Tài liệu tham khảo**: Section 4.1.2 của RFC 7519
+
+- **Ví dụ code với Header Parameters trong JWE**:
+  Khi bạn cần tạo JWT và gửi trong một tiêu đề HTTP, có thể sử dụng JWE để mã hóa:
+  ```javascript
+  const jose = require('node-jose');
+
+  const payload = { iss: 'myIssuer', sub: 'user123' };
+  const key = jose.JWK.asKey('your-256-bit-secret', 'oct');
+
+  jose.JWS.createSign({ format: 'compact' }, key)
+    .update(JSON.stringify(payload))
+    .final()
+    .then(token => {
+      console.log('JWT Token: ', token);
+    });
+  ```
+
+---
+
+### 11. Security Considerations
+
+- **Mục đích**: Các vấn đề bảo mật quan trọng đối với việc sử dụng JWT (JSON Web Token) liên quan đến việc bảo vệ khóa riêng của người dùng và các biện pháp phòng chống tấn công. Các vấn đề bảo mật trong các phần khác của JOSE (JWS, JWE, JWK) cũng áp dụng cho JWT.
+
+#### Các Vấn Đề Bảo Mật Liên Quan:
+- JWT phải được bảo mật và ký/ mã hóa để đảm bảo tính toàn vẹn và xác thực.
+- Phải bảo vệ khóa riêng (private key) và khóa bí mật (secret key) trong quá trình sử dụng JWT/JWS/JWE.
+- Các vấn đề bảo mật trong **JWS** và **JWE** cũng áp dụng cho JWT, đặc biệt là các vấn đề liên quan đến **so sánh Unicode** và các **vấn đề bảo mật của JSON**.
+
+#### 11.1. Trust Decisions (Quyết Định Tin Cậy)
+- **Vấn đề**: Nội dung của JWT không thể tin cậy được trong quyết định tin cậy nếu nó chưa được bảo mật và gắn kết với ngữ cảnh cần thiết.
+- **Giải thích**: Để một JWT có thể được tin cậy, các khóa sử dụng để ký và/hoặc mã hóa JWT cần phải được xác minh là dưới sự kiểm soát của bên phát hành JWT. 
+- **Ví dụ**: Nếu một JWT được sử dụng trong quy trình xác thực, cần đảm bảo rằng JWT đó được ký bằng khóa riêng của bên phát hành và có thể xác thực bằng khóa công khai.
+
+  ```javascript
+  const jwt = require('jsonwebtoken');
+  
+  // Khóa công khai (public key) và khóa riêng (private key)
+  const publicKey = 'your-public-key';
+  const privateKey = 'your-private-key';
+
+  // Tạo JWT
+  const payload = { sub: 'user123', iss: 'myIssuer' };
+  const token = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
+
+  // Xác thực JWT
+  jwt.verify(token, publicKey, (err, decoded) => {
+    if (err) {
+      console.log('JWT verification failed');
+    } else {
+      console.log('JWT verified successfully', decoded);
+    }
+  });
+  ```
+
+#### 11.2. Signing and Encryption Order (Thứ Tự Ký và Mã Hóa)
+- **Vấn đề**: Nếu cả ký và mã hóa JWT đều cần thiết, thứ tự ký và mã hóa cần phải chính xác để tránh các tấn công và đảm bảo tính bảo mật.
+- **Khuyến nghị**: Thường thì JWT nên được ký trước và mã hóa sau. Điều này giúp bảo vệ chữ ký khỏi việc bị tách ra khỏi thông điệp mã hóa và đảm bảo tính bảo mật cho người ký.
+- **Giải thích**: Nếu ký trước và mã hóa sau, bạn sẽ đảm bảo rằng chữ ký không thể bị bỏ đi mà chỉ có dữ liệu mã hóa sẽ được lộ. Điều này cũng bảo vệ quyền riêng tư của người ký.
+  
+  **Quá trình ký và mã hóa đúng**:
+  1. Ký JWT.
+  2. Mã hóa JWT đã ký.
+  
+  **Ví dụ** (Ký và mã hóa trong JWE):
+  ```javascript
+  const jose = require('node-jose');
+  
+  // Tạo payload
+  const payload = { sub: 'user123', iss: 'myIssuer' };
+
+  // Tạo khóa riêng và công khai
+  const privateKey = jose.JWK.asKey('your-private-key', 'pem');
+  const publicKey = jose.JWK.asKey('your-public-key', 'pem');
+
+  // Ký JWT
+  jose.JWS.createSign({ format: 'compact' }, privateKey)
+    .update(JSON.stringify(payload))
+    .final()
+    .then(signedJWT => {
+      // Mã hóa JWT đã ký
+      jose.JWE.createEncrypt({ format: 'compact' }, publicKey)
+        .update(signedJWT)
+        .final()
+        .then(encryptedJWT => {
+          console.log('Encrypted JWT: ', encryptedJWT);
+        });
+    });
+  ```
+
+---
+
+### 12. Privacy Considerations (Cân Nhắc Về Quyền Riêng Tư)
+
+- **Mục đích**: JWT có thể chứa thông tin nhạy cảm về quyền riêng tư. Do đó, cần phải có các biện pháp để ngăn chặn việc tiết lộ thông tin này cho các bên không mong muốn.
+
+#### Các Biện Pháp Đảm Bảo Quyền Riêng Tư:
+- **Mã hóa JWT**: Sử dụng JWT mã hóa để bảo vệ dữ liệu nhạy cảm.
+- **Sử dụng TLS**: Nếu JWT chứa thông tin nhạy cảm chưa mã hóa, đảm bảo rằng nó được truyền qua các giao thức an toàn như **TLS** (Transport Layer Security) để bảo vệ dữ liệu khi truyền qua mạng.
+- **Lựa chọn không chứa thông tin nhạy cảm**: Trong một số trường hợp, cách đơn giản nhất là không đưa thông tin nhạy cảm vào trong JWT.
+
+- **Ví dụ về mã hóa JWT**:
+  ```javascript
+  const jose = require('node-jose');
+
+  // Tạo payload chứa thông tin nhạy cảm
+  const sensitiveData = { ssn: '123-45-6789', name: 'John Doe' };
+
+  // Tạo khóa công khai và khóa riêng
+  const privateKey = jose.JWK.asKey('your-private-key', 'pem');
+  const publicKey = jose.JWK.asKey('your-public-key', 'pem');
+
+  // Mã hóa thông tin nhạy cảm
+  jose.JWE.createEncrypt({ format: 'compact' }, publicKey)
+    .update(JSON.stringify(sensitiveData))
+    .final()
+    .then(encryptedJWT => {
+      console.log('Encrypted JWT with sensitive data: ', encryptedJWT);
+    });
+  ```
+
+---
+
