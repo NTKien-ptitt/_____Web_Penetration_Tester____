@@ -1,5 +1,71 @@
 
+### Mục Lục (Table of Contents)
 
+### **1. Introduction** *(Giới thiệu)*  
+
+### **2. Terminology** *(Thuật ngữ)*  
+1. **JSON Web Token (JWT)** *(Mã thông báo Web JSON)*  
+2. **Claim** *(Yêu cầu/Khẳng định)*  
+3. **JWT Claims Set** *(Tập hợp các yêu cầu JWT)*  
+4. **Nested JWT** *(JWT lồng ghép)*  
+5. **Unsecured JWT** *(JWT không bảo mật)*  
+6. **NumericDate** *(Kiểu ngày số)*    
+
+### **3. JSON Web Token (JWT) Overview** *(Tổng quan về JSON Web Token)*  
+
+### **3.1. Example JWT** *(Ví dụ JWT)*  
+
+### **4. JWT Claims** *(Yêu cầu JWT)*  
+1. **Registered Claim Names** *(Tên yêu cầu được đăng ký)*  
+2. **Public Claim Names** *(Tên yêu cầu công khai)*  
+3. **Private Claim Names** *(Tên yêu cầu riêng tư)*  
+
+### **4.1. Registered Claim Names** *(Tên yêu cầu được đăng ký)*  
+#### **4.1.1. "iss" (Issuer)** *(Người phát hành)*  
+#### **4.1.2. "sub" (Subject)** *(Chủ thể)*  
+#### **4.1.3. "aud" (Audience)** *(Khán giả)*  
+#### **4.1.4. "exp" (Expiration Time)** *(Thời gian hết hạn)*  
+#### **4.1.5. "nbf" (Not Before)** *(Không trước thời điểm)*  
+#### **4.1.6. "iat" (Issued At)** *(Thời điểm phát hành)*  
+#### **4.1.7. "jti" (JWT ID)** *(ID JWT)*  
+
+### **4.2. Public Claim Names** *(Tên yêu cầu công khai)*  
+
+### **4.3. Private Claim Names** *(Tên yêu cầu riêng tư)*  
+
+### **5. JOSE Header** *(Phần đầu JOSE)*  
+#### **5.1. "typ" (Type) Header Parameter** *(Tham số tiêu đề "typ" - Loại)*  
+#### **5.2. "cty" (Content Type) Header Parameter** *(Tham số tiêu đề "cty" - Loại nội dung)*  
+#### **5.3. Replicating Claims as Header Parameters** *(Nhân đôi yêu cầu dưới dạng tham số tiêu đề)*  
+
+### **6. Unsecured JWTs** *(JWT không bảo mật)*  
+#### **6.1. Example Unsecured JWT** *(Ví dụ JWT không bảo mật)*  
+
+### **7. Operations with JWTs** *(Thao tác với JWTs)*  
+#### **7.1. Tạo JWT (Creating a JWT)**  
+#### **7.2. Xác thực JWT (Validating a JWT)**  
+#### **7.3. Quy tắc so sánh chuỗi (String Comparison Rules)**  
+
+### **8. Implementation Requirements** *(Yêu cầu triển khai)*  
+1. **Thuật toán ký số và MAC (Signature and MAC Algorithms)**  
+2. **Hỗ trợ JWT được mã hóa (Encrypted JWTs)**  
+3. **JWT lồng ghép (Nested JWTs)**  
+
+### **9. URI for Declaring that Content is a JWT** *(URI để khai báo nội dung là JWT)*  
+
+### **10. IANA Considerations** *(Cân nhắc IANA)*  
+#### **10.1. JSON Web Token Claims Registry** *(Đăng ký yêu cầu JWT)*  
+#### **10.2. Sub-Namespace Registration of urn:ietf:params:oauth:token-type:jwt** *(Đăng ký không gian con cho urn:ietf:params:oauth:token-type:jwt)*  
+#### **10.3. Media Type Registration** *(Đăng ký loại phương tiện)*  
+#### **10.4. Header Parameter Names Registration** *(Đăng ký tên tham số tiêu đề)*  
+
+### **11. Security Considerations** *(Cân nhắc bảo mật)*  
+#### **11.1. Trust Decisions** *(Quyết định tin cậy)*  
+#### **11.2. Signing and Encryption Order** *(Thứ tự ký và mã hóa)*  
+
+### **12. Privacy Considerations** *(Cân nhắc quyền riêng tư)*  
+
+Let me know if you need further adjustments!
 ---
 
 ### **1. Introduction**  
@@ -639,7 +705,7 @@ Khi xác thực JWT, thực hiện các bước sau (JWT bị từ chối nếu 
 - Phải bảo vệ khóa riêng (private key) và khóa bí mật (secret key) trong quá trình sử dụng JWT/JWS/JWE.
 - Các vấn đề bảo mật trong **JWS** và **JWE** cũng áp dụng cho JWT, đặc biệt là các vấn đề liên quan đến **so sánh Unicode** và các **vấn đề bảo mật của JSON**.
 
-#### 11.1. Trust Decisions (Quyết Định Tin Cậy)
+#### 11.1. Trust Decisions 
 - **Vấn đề**: Nội dung của JWT không thể tin cậy được trong quyết định tin cậy nếu nó chưa được bảo mật và gắn kết với ngữ cảnh cần thiết.
 - **Giải thích**: Để một JWT có thể được tin cậy, các khóa sử dụng để ký và/hoặc mã hóa JWT cần phải được xác minh là dưới sự kiểm soát của bên phát hành JWT. 
 - **Ví dụ**: Nếu một JWT được sử dụng trong quy trình xác thực, cần đảm bảo rằng JWT đó được ký bằng khóa riêng của bên phát hành và có thể xác thực bằng khóa công khai.
@@ -665,7 +731,7 @@ Khi xác thực JWT, thực hiện các bước sau (JWT bị từ chối nếu 
   });
   ```
 
-#### 11.2. Signing and Encryption Order (Thứ Tự Ký và Mã Hóa)
+#### 11.2. Signing and Encryption Order 
 - **Vấn đề**: Nếu cả ký và mã hóa JWT đều cần thiết, thứ tự ký và mã hóa cần phải chính xác để tránh các tấn công và đảm bảo tính bảo mật.
 - **Khuyến nghị**: Thường thì JWT nên được ký trước và mã hóa sau. Điều này giúp bảo vệ chữ ký khỏi việc bị tách ra khỏi thông điệp mã hóa và đảm bảo tính bảo mật cho người ký.
 - **Giải thích**: Nếu ký trước và mã hóa sau, bạn sẽ đảm bảo rằng chữ ký không thể bị bỏ đi mà chỉ có dữ liệu mã hóa sẽ được lộ. Điều này cũng bảo vệ quyền riêng tư của người ký.
@@ -702,7 +768,7 @@ Khi xác thực JWT, thực hiện các bước sau (JWT bị từ chối nếu 
 
 ---
 
-### 12. Privacy Considerations (Cân Nhắc Về Quyền Riêng Tư)
+### 12. Privacy Considerations
 
 - **Mục đích**: JWT có thể chứa thông tin nhạy cảm về quyền riêng tư. Do đó, cần phải có các biện pháp để ngăn chặn việc tiết lộ thông tin này cho các bên không mong muốn.
 
