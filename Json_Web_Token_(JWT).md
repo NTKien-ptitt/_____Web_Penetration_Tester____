@@ -2,7 +2,7 @@
 
 - [1. Introduction](#Introduction) *(Giới thiệu)*  
 - [2. Terminology](#Terminology) *(Thuật ngữ)*  
-  - [2.1. JSON Web Token (JWT)](#Json-web-token-jwt) *(Mã thông báo Web JSON)*  
+  - [2.1. JSON Web Token (JWT)](#2.1.-Json-web-token-jwt) *(Mã thông báo Web JSON)*  
   - [2.2. Claim](#Claim) *(Yêu cầu/Khẳng định)*  
   - [2.3. JWT Claims Set](#Jwt-claims-set) *(Tập hợp các yêu cầu JWT)*  
   - [2.4. Nested JWT](#Nested-jwt) *(JWT lồng ghép)*  
