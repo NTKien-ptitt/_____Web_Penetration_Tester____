@@ -10,7 +10,7 @@
   - [2.6. NumericDate](#26-Numericdate) *(Kiểu ngày số)*    
 - [3. JSON Web Token (JWT) Overview](#3-Json-web-token-jwt-overview) *(Tổng quan về JSON Web Token)*  
   - [3.1. Example JWT](#31-Example-jwt) *(Ví dụ JWT)*  
-- [4. JWT Claims](#Jwt-claims) *(Yêu cầu JWT)*  
+- [4. JWT Claims](#4-Jwt-claims) *(Yêu cầu JWT)*  
   - [4.1. Registered Claim Names](#registered-claim-names) *(Tên yêu cầu được đăng ký)*  
     - [4.1.1. "iss" (Issuer)](#iss-issuer) *(Người phát hành)*  
     - [4.1.2. "sub" (Subject)](#sub-subject) *(Chủ thể)*  
@@ -21,30 +21,30 @@
     - [4.1.7. "jti" (JWT ID)](#jti-jwt-id) *(ID JWT)*  
   - [4.2. Public Claim Names](#public-claim-names) *(Tên yêu cầu công khai)*  
   - [4.3. Private Claim Names](#private-claim-names) *(Tên yêu cầu riêng tư)*  
-- [5. JOSE Header](#jose-header) *(Phần đầu JOSE)*  
+- [5. JOSE Header](#5-jose-header) *(Phần đầu JOSE)*  
   - [5.1. "typ" (Type) Header Parameter](#typ-type-header-parameter) *(Tham số tiêu đề "typ" - Loại)*  
   - [5.2. "cty" (Content Type) Header Parameter](#cty-content-type-header-parameter) *(Tham số tiêu đề "cty" - Loại nội dung)*  
   - [5.3. Replicating Claims as Header Parameters](#replicating-claims-as-header-parameters) *(Nhân đôi yêu cầu dưới dạng tham số tiêu đề)*  
-- [6. Unsecured JWTs](#unsecured-jwts) *(JWT không bảo mật)*  
+- [6. Unsecured JWTs](#6-unsecured-jwts) *(JWT không bảo mật)*  
   - [6.1. Example Unsecured JWT](#example-unsecured-jwt) *(Ví dụ JWT không bảo mật)*  
-- [7. Operations with JWTs](#operations-with-jwts) *(Thao tác với JWTs)*  
+- [7. Operations with JWTs](#7-operations-with-jwts) *(Thao tác với JWTs)*  
   - [7.1. Tạo JWT (Creating a JWT)](#creating-a-jwt)  
   - [7.2. Xác thực JWT (Validating a JWT)](#validating-a-jwt)  
   - [7.3. Quy tắc so sánh chuỗi (String Comparison Rules)](#string-comparison-rules)  
-- [8. Implementation Requirements](#implementation-requirements) *(Yêu cầu triển khai)*  
+- [8. Implementation Requirements](#8-implementation-requirements) *(Yêu cầu triển khai)*  
   - [8.1. Thuật toán ký số và MAC (Signature and MAC Algorithms)](#signature-and-mac-algorithms)  
   - [8.2. Hỗ trợ JWT được mã hóa (Encrypted JWTs)](#encrypted-jwts)  
   - [8.3. JWT lồng ghép (Nested JWTs)](#nested-jwts)  
-- [9. URI for Declaring that Content is a JWT](#uri-for-declaring-that-content-is-a-jwt) *(URI để khai báo nội dung là JWT)*  
-- [10. IANA Considerations](#iana-considerations) *(Cân nhắc IANA)*  
+- [9. URI for Declaring that Content is a JWT](#9-uri-for-declaring-that-content-is-a-jwt) *(URI để khai báo nội dung là JWT)*  
+- [10. IANA Considerations](#10-iana-considerations) *(Cân nhắc IANA)*  
   - [10.1. JSON Web Token Claims Registry](#json-web-token-claims-registry) *(Đăng ký yêu cầu JWT)*  
   - [10.2. Sub-Namespace Registration of urn:ietf:params:oauth:token-type:jwt](#sub-namespace-registration-of-urnietfparamsoauthtoken-typejwt) *(Đăng ký không gian con cho urn:ietf:params:oauth:token-type:jwt)*  
   - [10.3. Media Type Registration](#media-type-registration) *(Đăng ký loại phương tiện)*  
   - [10.4. Header Parameter Names Registration](#header-parameter-names-registration) *(Đăng ký tên tham số tiêu đề)*  
-- [11. Security Considerations](#security-considerations) *(Cân nhắc bảo mật)*  
+- [11. Security Considerations](#11-security-considerations) *(Cân nhắc bảo mật)*  
   - [11.1. Trust Decisions](#trust-decisions) *(Quyết định tin cậy)*  
   - [11.2. Signing and Encryption Order](#signing-and-encryption-order) *(Thứ tự ký và mã hóa)*  
-- [12. Privacy Considerations](#privacy-considerations) *(Cân nhắc quyền riêng tư)*  
+- [12. Privacy Considerations](#12-privacy-considerations) *(Cân nhắc quyền riêng tư)*  
 
 ---
 
