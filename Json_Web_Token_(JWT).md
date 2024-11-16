@@ -11,16 +11,16 @@
 - [3. JSON Web Token (JWT) Overview](#3-Json-web-token-jwt-overview) *(Tổng quan về JSON Web Token)*  
   - [3.1. Example JWT](#31-Example-jwt) *(Ví dụ JWT)*  
 - [4. JWT Claims](#4-Jwt-claims) *(Yêu cầu JWT)*  
-  - [4.1. Registered Claim Names](#registered-claim-names) *(Tên yêu cầu được đăng ký)*  
-    - [4.1.1. "iss" (Issuer)](#iss-issuer) *(Người phát hành)*  
-    - [4.1.2. "sub" (Subject)](#sub-subject) *(Chủ thể)*  
-    - [4.1.3. "aud" (Audience)](#aud-audience) *(Khán giả)*  
-    - [4.1.4. "exp" (Expiration Time)](#exp-expiration-time) *(Thời gian hết hạn)*  
-    - [4.1.5. "nbf" (Not Before)](#nbf-not-before) *(Không trước thời điểm)*  
-    - [4.1.6. "iat" (Issued At)](#iat-issued-at) *(Thời điểm phát hành)*  
-    - [4.1.7. "jti" (JWT ID)](#jti-jwt-id) *(ID JWT)*  
-  - [4.2. Public Claim Names](#public-claim-names) *(Tên yêu cầu công khai)*  
-  - [4.3. Private Claim Names](#private-claim-names) *(Tên yêu cầu riêng tư)*  
+  - [4.1. Registered Claim Names](#41-registered-claim-names) *(Tên yêu cầu được đăng ký)*  
+    - [4.1.1. "iss" (Issuer)](#411-iss-issuer) *(Người phát hành)*  
+    - [4.1.2. "sub" (Subject)](#412-sub-subject) *(Chủ thể)*  
+    - [4.1.3. "aud" (Audience)](#413aud-audience) *(Khán giả)*  
+    - [4.1.4. "exp" (Expiration Time)](#414-exp-expiration-time) *(Thời gian hết hạn)*  
+    - [4.1.5. "nbf" (Not Before)](#415-nbf-not-before) *(Không trước thời điểm)*  
+    - [4.1.6. "iat" (Issued At)](#416-iat-issued-at) *(Thời điểm phát hành)*  
+    - [4.1.7. "jti" (JWT ID)](#417-jti-jwt-id) *(ID JWT)*  
+  - [4.2. Public Claim Names](#42-public-claim-names) *(Tên yêu cầu công khai)*  
+  - [4.3. Private Claim Names](#43-private-claim-names) *(Tên yêu cầu riêng tư)*  
 - [5. JOSE Header](#5-jose-header) *(Phần đầu JOSE)*  
   - [5.1. "typ" (Type) Header Parameter](#typ-type-header-parameter) *(Tham số tiêu đề "typ" - Loại)*  
   - [5.2. "cty" (Content Type) Header Parameter](#cty-content-type-header-parameter) *(Tham số tiêu đề "cty" - Loại nội dung)*  
