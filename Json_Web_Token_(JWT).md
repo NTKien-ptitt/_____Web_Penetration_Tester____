@@ -1,6 +1,6 @@
 ### Mục Lục (Table of Contents)
 
-- [1. Introduction](#Introduction) *(Giới thiệu)*  
+- [1. Introduction](#1-Introduction) *(Giới thiệu)*  
 - [2. Terminology](#Terminology) *(Thuật ngữ)*  
   - [2.1. JSON Web Token (JWT)](#2.1.-Json-web-token-jwt) *(Mã thông báo Web JSON)*  
   - [2.2. Claim](#Claim) *(Yêu cầu/Khẳng định)*  
