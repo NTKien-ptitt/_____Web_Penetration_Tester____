@@ -2,14 +2,14 @@
 
 - [1. Introduction](#1-Introduction) *(Giới thiệu)*  
 - [2. Terminology](#2-Terminology) *(Thuật ngữ)*  
-  - [2.1. JSON Web Token (JWT)](#2.1-Json-web-token-jwt) *(Mã thông báo Web JSON)*  
-  - [2.2. Claim](#Claim) *(Yêu cầu/Khẳng định)*  
-  - [2.3. JWT Claims Set](#jwt-claims-set) *(Tập hợp các yêu cầu JWT)*  
-  - [2.4. Nested JWT](#Nested-jwt) *(JWT lồng ghép)*  
-  - [2.5. Unsecured JWT](#Unsecured-jwt) *(JWT không bảo mật)*  
-  - [2.6. NumericDate](#Numericdate) *(Kiểu ngày số)*    
-- [3. JSON Web Token (JWT) Overview](#Json-web-token-jwt-overview) *(Tổng quan về JSON Web Token)*  
-  - [3.1. Example JWT](#Example-jwt) *(Ví dụ JWT)*  
+  - [2.1. JSON Web Token (JWT)](#21-Json-web-token-jwt) *(Mã thông báo Web JSON)*  
+  - [2.2. Claim](#22-Claim) *(Yêu cầu/Khẳng định)*  
+  - [2.3. JWT Claims Set](#23-jwt-claims-set) *(Tập hợp các yêu cầu JWT)*  
+  - [2.4. Nested JWT](#24-Nested-jwt) *(JWT lồng ghép)*  
+  - [2.5. Unsecured JWT](#25-Unsecured-jwt) *(JWT không bảo mật)*  
+  - [2.6. NumericDate](#26-Numericdate) *(Kiểu ngày số)*    
+- [3. JSON Web Token (JWT) Overview](#3-Json-web-token-jwt-overview) *(Tổng quan về JSON Web Token)*  
+  - [3.1. Example JWT](#31-Example-jwt) *(Ví dụ JWT)*  
 - [4. JWT Claims](#Jwt-claims) *(Yêu cầu JWT)*  
   - [4.1. Registered Claim Names](#registered-claim-names) *(Tên yêu cầu được đăng ký)*  
     - [4.1.1. "iss" (Issuer)](#iss-issuer) *(Người phát hành)*  
