@@ -1,4 +1,4 @@
-# Write up: "Phân Tích Sâu Về Các Lộ Trình Bài Học Thực Hành Trong Khóa Học Senior Penetration Tester - HACKTHEBOX"
+# Write Up: "Phân Tích Sâu Về Các Lộ Trình Bài Học Thực Hành Trong Khóa Học Senior Penetration Tester - HACKTHEBOX"
       ████████████████████████████████████████████████████
       █                                                                  
       █    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
